@@ -1,0 +1,47 @@
+title: Git Clone Repository
+summary: Checks out the repository, updates submodules and exports git metadata as Step outputs.
+description: |
+  The checkout process depends on the Step settings and the build trigger parameters (coming from your git server).
+
+  Depending on the conditions, the step can checkout:
+  - the merged state of a Pull Request
+  - the head of a Pull Request
+  - a git tag
+  - a specific commit on a branch
+  - the head of a branch
+
+  The Step also supports more advanced features, such as updating submodules and sparse checkouts.
+
+  ### Configuring the Step
+
+  The step should work with its default configuration if build triggers and webhooks are set up correctly.
+
+  By default, the Step performs a shallow clone in most cases (fetching only the latest commit) to make the clone fast and efficient. If your workflow requires a deeper commit history, you can override this using the **Clone depth** input.
+
+  ### Useful links
+
+  - [How to register a GitHub Enterprise repository](https://discuss.bitrise.io/t/how-to-register-a-github-enterprise-repository/218)
+  - [Code security](https://devcenter.bitrise.io/getting-started/code-security/)
+
+  ### Related Steps
+
+  - [Activate SSH key (RSA private key)](https://www.bitrise.io/integrations/steps/activate-ssh-key)
+  - [Generate changelog](https://bitrise.io/integrations/steps/generate-changelog)
+
+website: https://github.com/bitrise-steplib/steps-git-clone
+source_code_url: https://github.com/bitrise-steplib/steps-git-clone
+support_url: https://github.com/bitrise-steplib/steps-git-clone/issues
+type_tags:
+- utility
+is_requires_admin_user: false
+is_always_run: false
+is_skippable: false
+run_if: .IsCI
+toolkit:
+  go:
+    package_name: github.com/bitrise-steplib/steps-git-clone
+inputs:
+- merge_pr: "yes"
+
+outputs:
+- GIT_CLONE_COMMIT_HASH:
