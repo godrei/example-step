@@ -42,6 +42,8 @@ toolkit:
     package_name: github.com/bitrise-steplib/steps-git-clone
 inputs:
 - merge_pr: "yes"
+- input_1: 
+- input_2: 
 
 outputs:
 - GIT_CLONE_COMMIT_HASH:
